@@ -1,0 +1,10 @@
+.dashboard_main_card{
+background-color: white;
+width: 300px;
+height: 100px;
+border-radius: 10px;
+display: flex;
+justify-content: space-between;
+margin-bottom: 20px;
+padding: 10px;
+}

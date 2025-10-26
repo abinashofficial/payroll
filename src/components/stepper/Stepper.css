@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 73px; /* Set your preferred height */
+    width: 180px; /* Set your preferred width */
+    color: #fff; /* Set your preferred text color */
+  }
+  
+  .icon-container {
+    font-size: 24px; /* Set your preferred icon size */
+  } 
+  
+  .text-container {
+    text-align: left;
+    margin-bottom: 27px;
+  }
+  
+  .label-container{
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  .stepper-container{
+    margin: 50px;
+  }
+
+
+/* Hide for all other devices/sizes */
+@media (max-width: 1279px), (min-width: 1601px), (orientation: portrait) {
+  .stepper-container {
+    display: none;
+  }
+}

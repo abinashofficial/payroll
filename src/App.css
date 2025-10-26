@@ -1,0 +1,84 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+ */
+
+ .css-126p85h {
+width: 240px !important;
+ }
+
+ .css-rsu3m2 {
+  width: 240px !important;
+ }
+
+ .top-section {
+    display: flex;
+    align-items: center;
+    padding: 15px 5px;
+    justify-content: flex-start;
+    margin-top: 70px !important;
+}
+
+.filter_search{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+/* For portrait orientation */
+@media (orientation: portrait) {
+  .filter_search {
+    flex-direction: column;
+  }
+}
+
+/* For all small screen resolutions (like mobile or narrow windows) */
+@media (max-width: 768px) {
+  .filter_search {
+    flex-direction: column;
+    width: 100%; /* optional: make it fill smaller screens */
+    height: auto; /* optional: adjust height automatically */
+  }
+}

@@ -1,0 +1,181 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+body {
+  background-color: #effaef !important;
+  font-family: "Nunito Sans", sans-serif;
+}
+main {
+  padding: 25px 25px;
+  /* background: #ffffff; */
+  margin: 10px;
+  border-radius: 5px;
+  /* position: absolute; */
+}
+.HeaderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-bottom: 1px solid #d1d1d1;
+}
+.sidebar {
+  background-color: #ffffff;
+  color: #4d8c52;
+  height: 100vh;
+  width: 300px;
+  overflow-y: auto;
+  /* box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.9); */
+}
+
+
+.logo {
+  font-size: 25px;
+}
+
+.links {
+  display: flex;
+  color: #4d8c52;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+.links:hover {
+  background-color: #6abf71;
+  color: #fff;
+  transition: all 0.5s;
+}
+.active {
+  background-color: #4d8c52;
+  color: #ffffff;
+}
+
+.link-text {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.icon {
+  font-size: 20px;
+  padding: 12px;
+}
+.menuName {
+  font-size: 16px;
+  position: relative;
+  top: -5px;
+  left: 10px;
+  /* color: #5b5b5b; */
+  font-weight: 600;
+}
+.submenuName1 {
+  padding: 10px 30px;
+  font-size: small;
+
+}
+
+.menu {
+  /* background-color: #ffffff; */
+  /* color: rgb(0, 0, 0); */
+}
+/* .menu:hover {
+  background-color: rgb(5, 179, 43);
+  color: #000;
+} */
+
+.headerContainer {
+  background-color: rgb(255, 255, 255);
+  /* height: 5vh; */
+  width: 100%;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  margin: -5px 0px 0px -5px;
+  padding-right: 7px;
+}
+.Headertext {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 0px;
+  color: #5a5a5a;
+  gap: 15px;
+}
+.cusor-pointer {
+  cursor: pointer;
+}
+.avatarpic img {
+  width: 30px;
+  cursor: pointer;
+}
+.bodyContent {
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 10px;
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+  overflow-y: auto;
+  /* background-repeat: no-repeat;
+    background-position: right bottom; */
+  /* background-image: url("../component/BodyBg.png"); */
+}
+.icons-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  gap: 15px;
+}
+.avatar {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+.payrollText {
+  /* position: relative;
+  right: 370px; */
+  font-weight: 600;
+  font-size: 18px;
+  /* color: ; */
+}
+.avatar-img {
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  border-radius: 50%; /* Make the avatar circular */
+  object-fit: cover; /* Ensure the image covers the entire container */
+}
+
+.smallLogo img {
+  width: 40px;
+  margin-left: -5px;
+  margin-bottom: 10px;
+}
+.focus\:ring-indigo-600:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: #4d8c52 !important;
+}
+.active > .page-link,
+.page-link.active {
+  z-index: 3;
+  color: var(--cui-pagination-active-color);
+  background-color: #4d8c52 !important;
+  border-color: #4d8c52 !important;
+}
+.form-check-input:checked {
+  background-color: #4d8c52 !important;
+  border-color: #4d8c52 !important;
+}
+.form-check-input[type="checkbox"]:indeterminate {
+  background-color: #4d8c52 !important;
+  border-color: #4d8c52 !important;
+}
+
+.form-control:focus {
+  color: var(--cui-input-focus-color, var(--cui-body-color));
+  background-color: var(--cui-input-focus-bg, var(--cui-body-bg));
+  border-color: #4d8b52 !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.2px rgb(77 140 31) !important;
+}
+
+.sibeBarWrapper {
+}

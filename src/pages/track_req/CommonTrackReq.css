@@ -1,0 +1,46 @@
+.border_title{
+    background-color: #EFFAEF;
+    padding: 15px;
+    height: max-content;
+}
+.css-1wvnaxz-MuiTableCell-root.MuiTableCell-head{
+    background-color: #A5D0A9!important;
+    color: black !important;
+    font-weight: 600 !important;
+
+}
+
+.css-1nslmh4-MuiTableCell-root.MuiTableCell-head{
+    background-color: #A5D0A9!important;
+    color: black !important;
+    font-weight: 600 !important;
+}
+
+.css-1ygcj2i-MuiTableCell-root{
+    background-color: #A5D0A9!important;
+    color: black !important;
+    font-weight: 600 !important;   
+}
+
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate{
+    color:  #A5D0A9!important;
+}
+
+.test{
+    background-color: #A5D0A9!important;
+    color: black !important;
+    font-weight: 600 !important;   
+}
+
+th{
+    background-color: #A5D0A9!important;
+    color: black !important;
+    font-weight: 600 !important;   
+}
+
+
+.filter_width{
+   height: 40px;
+   border-radius: 5px;
+   text-align: center;
+}
