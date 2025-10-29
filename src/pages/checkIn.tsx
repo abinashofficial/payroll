@@ -212,11 +212,14 @@ addAttendance()
     console.log(error)
   };
   return (
+        <div className="flex flex-col items-center justify-center p-6 bg-gray-100 rounded-2xl shadow-md w-full max-w-lg mx-auto mt-10">
+
     <div 
     style={{
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
+        flexDirection:"column",
         // width:"100%",
         // height:"60vh",
     }}
@@ -409,6 +412,8 @@ addAttendance()
 
 
     </div>
+        </div>
+
   );
 };
 
