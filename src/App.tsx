@@ -18,6 +18,7 @@ import OverAllDashboardRequest from "./pages/dashboard/OverAllDashboard";
 import "./pages/track_req/CommonTrackReq.css"
 import CheckInOut from './pages/checkIn.tsx'
 import EmployeeCheckInOut from './pages/companyDetails.tsx'
+import {ManagerTrackRequest} from './pages/track_req/managerTrackReq.tsx';
 
 
 
@@ -152,6 +153,8 @@ function App() {
 
             <Route path="/" element={<Auth />} /> 
             <Route path="/payroll/trackreq" element={<UserTrackRequest />} />
+                        <Route path="/payroll/managerreq" element={<ManagerTrackRequest />} />
+
 
             <Route path="/payroll/calendar" element={<Calendar/>} />
                         <Route path="/payroll/payslip" element={<Payslip/>} />

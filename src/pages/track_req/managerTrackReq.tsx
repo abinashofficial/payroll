@@ -11,15 +11,15 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
-import ModeEditOutlineTwoToneIcon from '@mui/icons-material/ModeEditOutlineTwoTone';
+// import ModeEditOutlineTwoToneIcon from '@mui/icons-material/ModeEditOutlineTwoTone';
 // import CustomStepper from "../../components/stepper/Stepper";
 import Box from '@mui/material/Box';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { VisibleRequest } from "../raise-req/VisibleReq";
-import { EditRequest } from "../raise-req/EditReq";
+// import { VisibleRequest } from "../raise-req/VisibleReq";
+// import { EditRequest } from "../raise-req/EditReq";
 import IconButton from "@mui/material/IconButton";
 import TextField from '@mui/material/TextField';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
@@ -33,7 +33,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 // import { useTheme } from '@mui/material/styles';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
-import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+// import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
@@ -42,6 +42,7 @@ import Popover from '@mui/material/Popover';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { ManagerRequest } from "../raise-req/ManagerReq";
 
 
 
@@ -73,27 +74,23 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 // const pageSize = 5; // Number of items per page
 
-interface Item { 
-  request_id: string;
+interface Item {
+  name: string;
   employee_id: string;
   employee_name: string;
-  leave_type: string; 
+  package_type: string;
   status: string;
-  description: string;
-  report_to: string;
-  created_at: string;
-  updated_at: string;
-  reject_reason: string;
-  cancel_reason: string;
+  transport_from: string;
+  transport_to: string;
+  transport_mode: string;
+  purpose: string;
+    [key: string]: string | number; // Index signature for additional properties
 
-  // ✅ Newly added fields
-  datetime_from: null;   // Start date/time of leave
-  datetime_to: null;     // End date/time of leave
 }
 
-export function UserTrackRequest() {
+export function ManagerTrackRequest() {
 
-    const { trackrequest, editRequestStatus} = useContext(locateContext);
+    const { trackrequest} = useContext(locateContext);
   // const [projectLeadStatus, setProjectLeadStatus] = useState(4);
   // const [inventoryLeadStatus, setInventoryLeadStatus] = useState(4);
   // const [packingStatus, setPackingStatus] = useState(4);
@@ -141,27 +138,20 @@ export function UserTrackRequest() {
   const endIndex = Math.min(startIndex + pageSize, filteredRows.length);
   const currentItems = filteredRows.slice(startIndex, endIndex);
   const [visibleReq, setVisiblereq] = useState(false);
-  const [editReq, setEditreq] = useState(false);
+//   const [editReq, setEditreq] = useState(false);
   const [deleteReq, setDeleteReq] = useState(false);
 
   const [selectItem, setSelectItem] = useState({
-   request_id: "",
+    name: "",
     employee_id: "",
-     employee_name: "",
-      leave_type: "",
-       status: "",
-        description: "",
-         report_to: "",
-          created_at: "",
-           updated_at: "",
-            reject_reason: "",
-             cancel_reason: "",
-              datetime_from: null,
-    datetime_to: null ,
-
+    employee_name: "",
+    package_type: "",
+    status: "",
+    transport_from: "",
+    transport_to: "",
+    transport_mode: "",
+    purpose: "",
   });
-
-
 
 
 
@@ -336,14 +326,7 @@ export function UserTrackRequest() {
     if (action==="visible"){
         setVisiblereq(!visibleReq)
         setSelectItem(item)
-    }else if(action === "edit"){
-        setEditreq(!editReq)
-        setSelectItem(item)
-    }else if(action === "delete"){
-      setDeleteReq(!deleteReq)
-      setSelectItem(item)
-
-  }
+    }
   };
 
 
@@ -414,8 +397,8 @@ export function UserTrackRequest() {
         try {
           setDeleteReq(!deleteReq)
             //  updateDoc("Packaging Request", `${selectItem.name}`, formRaiseRequest);
-            console.log("Document updated successfully ", selectItem.request_id);
-            let message = selectItem.request_id + " - Cancelled successfully ";
+            console.log("Document updated successfully ", selectItem.name);
+            let message = selectItem.name + " - Cancelled successfully ";
 
             toast.success(message);
             setTimeout(() => {
@@ -724,8 +707,7 @@ export function UserTrackRequest() {
                     {item.status}
                       </div> 
                     </div>
-                     </TableCell> }  
-                             <TableCell align="center">
+                     </TableCell> }          <TableCell align="center">
             <div
               style={{
                 display: 'flex',
@@ -736,25 +718,9 @@ export function UserTrackRequest() {
               <VisibilityTwoToneIcon
                 onClick={() => userAction(item, 'visible')}
               />
-              {item.status === editRequestStatus ? (
-                <ModeEditOutlineTwoToneIcon
-                  onClick={() => userAction(item, 'edit')}
-                  style={{ cursor: 'pointer' }}
-                />
-                
-              ) : (
-                <ModeEditOutlineTwoToneIcon style={{ color: 'grey' }} />
-              )}
 
-{item.status === editRequestStatus ? (
-                <DeleteTwoToneIcon
-                  onClick={() => userAction(item, 'delete')}
-                  style={{ cursor: 'pointer' }}
-                />
-                
-              ) : (
-                <DeleteTwoToneIcon style={{ color: 'grey' }} />
-              )}
+
+
 
 
             </div>
@@ -848,9 +814,8 @@ export function UserTrackRequest() {
 
 
 
-      <VisibleRequest open={visibleReq} onClose={()=>userAction(selectItem,"visible")} item = {selectItem}/>
-      <EditRequest open={editReq} onClose={()=>userAction(selectItem,"edit")} item = {selectItem}/>
-
+      <ManagerRequest open={visibleReq} onClose={()=>userAction(selectItem,"visible")} item = {selectItem}/>
+      {/* <EditRequest open={editReq} onClose={()=>userAction(selectItem,"edit")} item = {selectItem}/> */}
 
 
 

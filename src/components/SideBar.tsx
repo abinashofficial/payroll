@@ -211,7 +211,7 @@ const SideBar: React.FC<SideBarProps> = ({
       path: "/payroll",
       submenu: [
         {
-          path: "payroll/trackreq",
+          path: "payroll/managerreq",
           name: "Leave Requests",
           icon: <HiOutlineHandRaised />,
         },
@@ -315,19 +315,19 @@ const SideBar: React.FC<SideBarProps> = ({
 
 
   useEffect(() => {
+          setEditRequestStatus("Pending")
+
     if (employeeRole === "Employee"){
       setMenuItems(userMenuItems)
-      setEditRequestStatus("Pending")
     }else if(employeeRole === "Manager"){
       setMenuItems(manager)
-      setEditRequestStatus("Manager Approved")
 
     }else if (employeeRole==="Admin"){
-      setEditRequestStatus("Admin Approved")
       setMenuItems(admin)
     }else{
       setMenuItems(userMenuItems)
     }
+
   }, [employeeRole]);
 
 

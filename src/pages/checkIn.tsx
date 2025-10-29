@@ -9,22 +9,11 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from "react-router-dom";
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
-
-// const steps = [
-//   {
-//     label: 'Check - IN',
-//     description: `For each ad campaign that you create, you can control how much
-//               you're willing to spend on clicks and conversions, which networks
-//               and geographical locations you want your ads to show on, and more.`,
-//   },
-//   {
-//     label: 'Check - Out',
-//     description:
-//       'An ad group contains one or more ads which target a shared set of keywords.',
-//   },
-
-// ];
 
 
 interface Location {
@@ -32,10 +21,12 @@ interface Location {
   longitude: number;
 }
 
-// const COMPANY_LOCATION: Location = {
-//   latitude: 12.9716,   // Example: Bangalore
-//   longitude: 77.5946,
-// };
+
+
+const BRANCH_LOCATIONS: Record<string, Location> = {
+  Bangalore: { latitude: 12.9716, longitude: 77.5946 },
+  Chennai: { latitude: 13.0827, longitude: 80.2707 },
+};
 
 const MAX_DISTANCE_METERS = 100; // Allowed radius
 
@@ -43,7 +34,9 @@ const CheckInOut: React.FC = () => {
   const [status, setStatus] = useState<string>("Not Checked In");
   const [distance, setDistance] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
-      const {company, setData  } = useContext(locateContext);
+    const [visible, setVisible] = useState<boolean>(true);
+
+      const {company, setData, setCompany  } = useContext(locateContext);
       const [activeStep, setActiveStep] = React.useState(0);
       const [checkInTime, setCheckInTime] = useState<Date | null>(null);
   const [checkOutTime, setCheckOutTime] = useState<Date | null>(null);
@@ -77,9 +70,16 @@ const CheckInOut: React.FC = () => {
   const handleCheckInOut = (action: any) => {
     if (!navigator.geolocation) {
       setError("Geolocation not supported");
+          setVisible(true)
+
       return;
     }
+    if ( company.location===null ) {
+      setError("Please Select Branch");
+          setVisible(true)
 
+      return;
+    }
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const currentLocation: Location = {
@@ -97,7 +97,8 @@ const CheckInOut: React.FC = () => {
                               setCheckInTime(now)
           setStatus(`Checked In at ${timestamp}`);
               setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
+                          setVisible(true)
+                      return
                     }else{
 
           setCheckOutTime(now)
@@ -105,7 +106,8 @@ const CheckInOut: React.FC = () => {
           
                     setStatus(`Total Working Hours - ${calculateHours(checkInTime, now)}`);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
+    setVisible(true)
+      return
                     }
 
           // Example: send to backend
@@ -118,7 +120,8 @@ const CheckInOut: React.FC = () => {
         } else {
         //   setStatus("❌ You are not within the company area!");
           setError("❌ You are not within the company area!")
-          return;
+              setVisible(true)
+              return;
         }
       },
       (err) => setError(err.message),
@@ -128,6 +131,8 @@ const CheckInOut: React.FC = () => {
 
 
   const handleNext = (index :any) => {
+     setError("")
+    setVisible(!visible)
     console.log(index);
     handleCheckInOut(index)
     // setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -174,6 +179,38 @@ addAttendance()
     setActiveStep(0);
     navigate("/payroll")
   };
+
+  // Get current user location and set as company location
+  const handleSetCurrentLocation = () => {
+    if (!navigator.geolocation) {
+    //   setError("Geolocation not supported");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const loc = {
+          latitude: pos.coords.latitude,
+          longitude: pos.coords.longitude,
+        };
+        setCompany((prev:any) => ({ ...prev, location: loc }));
+        // setError(null);
+        // setStatus("📍 Current location set for company!");
+      },
+      (err) => setError(err.message),
+      { enableHighAccuracy: true }
+    );
+  };
+    // Handle branch selection
+  const handleBranchChange = (branch: string) => {
+    let loc = null;
+    if (branch === "Bangalore" || branch === "Chennai") {
+      loc = BRANCH_LOCATIONS[branch];
+    } else if (branch === "Current Location") {
+      handleSetCurrentLocation();
+    }
+    setCompany((prev:any) => ({ ...prev, branch, location: loc }));
+    console.log(error)
+  };
   return (
     <div 
     style={{
@@ -190,8 +227,43 @@ addAttendance()
 
 
 
+{visible ?(
+  <div>
+            <div className="fields_gap" style={{
+              marginBottom:"20px",
+              display:checkInTime? "none":"block"
+            }}>
+          <FormControl
+              sx={{
+      "& .MuiInputLabel-root": { zIndex: 0 }, // ✅ label below overlay
+    }}
+          className="req_fields">
+            <InputLabel
+            id="category">Branches</InputLabel>
+            <Select
+              labelId="category"
+              id="category-select"
+           value={company.branch}
+            onChange={(e) => handleBranchChange(e.target.value)}
+              label="Category"
+            >
+                <MenuItem key={"Select Branch"} value={"Select Branch"}>
+                  Select Branch
+                </MenuItem>
+                                <MenuItem key={"Bangalore"} value={"Bangalore"}>
+                  Bangalore
+                </MenuItem>
+                                                <MenuItem key={"Chennai"} value={"Chennai"}>
+                  Chennai
+                </MenuItem>
+                            <MenuItem key={"Current Location"} value={"Current Location"}>
+                  Use My Current Location
+                </MenuItem>
+                
 
-
+            </Select>
+          </FormControl>
+        </div>
 
            <Box sx={{ maxWidth: 400 }}>
       <Stepper activeStep={activeStep} orientation="vertical">
@@ -224,12 +296,13 @@ addAttendance()
       {distance !== null && (
         <div>
         <p className="text-gray-600 mb-4">Distance from Office: {distance.toFixed(2)} m</p>
-                    {error && <p className="text-red-500 mt-2">{error}</p>}
 
         </div>
 
 
       )}
+                          {error && <p className="text-red-500 mt-2">{error}</p>}
+
               </Typography>
               <Box sx={{ mb: 2 }}>
                 <Button
@@ -253,7 +326,7 @@ addAttendance()
 
 
 
-           <Step key={"Check - IN"}>
+           <Step key={"Check - Out"}>
             <StepLabel
               optional=
               {checkOutTime?(
@@ -326,6 +399,15 @@ addAttendance()
 
       )}
     </Box>
+  </div>
+):(
+  <div className="spinner">
+
+  </div>
+)}
+
+
+
     </div>
   );
 };
