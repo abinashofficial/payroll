@@ -118,3 +118,47 @@ z-index: 0!important;
 .css-3hpdci-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
     color: #4d8c52 !important;
 }
+
+.checkin-container{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .checkin-container {
+    width: 60%;
+    margin: auto;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .checkin-container {
+    width: 80%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .checkin-container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .fields_gap {
+    margin-bottom: 10px !important;
+  }
+
+  button.MuiButton-root {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+
+  .MuiTypography-caption {
+    font-size: 12px !important;
+  }
+}
