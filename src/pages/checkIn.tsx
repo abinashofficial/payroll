@@ -224,9 +224,10 @@ addAttendance()
 
 {visible ?(
   <div>
-            <div className="fields_gap" style={{
+            <div style={{
               marginBottom:"20px",
-              display:checkInTime? "none":"block"
+              display:checkInTime? "none":"block",
+              width:"2vw",
             }}>
           <FormControl
               sx={{
