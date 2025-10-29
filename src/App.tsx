@@ -16,6 +16,8 @@ import { UserTrackRequest } from "./pages/track_req/UserTrackReq.tsx"
 import { Payslip } from './pages/payslip.tsx';
 import OverAllDashboardRequest from "./pages/dashboard/OverAllDashboard";
 import "./pages/track_req/CommonTrackReq.css"
+import CheckInOut from './pages/checkIn.tsx'
+import EmployeeCheckInOut from './pages/companyDetails.tsx'
 
 
 
@@ -25,6 +27,13 @@ import "./pages/track_req/CommonTrackReq.css"
 
 
 
+interface CompanyDetails {
+  name: string;
+  email: string;
+  logo: string | null;
+  branch: string;
+  location: Location | null;
+}
 
 
 
@@ -39,6 +48,16 @@ function App() {
     user_id: "",
     reports_to: "",
   });
+    const [company, setCompany] = useState<CompanyDetails>({
+      name: "",
+      email: "",
+      logo: null,
+      branch: "",
+      location: null,
+    });
+    const [data, setData] = useState([
+
+]);
 
   const [selectedBar, setSelectedBar] = useState("Common");
   const [employeeRole, setEmployeeRole] = useState("");
@@ -86,6 +105,8 @@ function App() {
           value={{
             empdetail: empdetail,
             setEmpdetail: setEmpdetail,
+            company:company,
+            setCompany:setCompany,
             selectedBar: selectedBar,
             setSelectedBar: setSelectedBar,
             employeeRole: employeeRole,
@@ -104,6 +125,8 @@ function App() {
             setSearchFilter:setSearchFilter,
             projectLeadApprovalRequestData:projectLeadApprovalRequestData,
             setProjectLeadApprovalRequestData:setProjectLeadApprovalRequestData,
+            data:data,
+            setData:setData,
           }}
         >
           {/* <Service/> */}
@@ -133,7 +156,9 @@ function App() {
             <Route path="/payroll/calendar" element={<Calendar/>} />
                         <Route path="/payroll/payslip" element={<Payslip/>} />
                                     <Route path="/payroll" element={<OverAllDashboardRequest/>} />
+                                    <Route path="/payroll/checkin" element={<CheckInOut/>} />
 
+                                    <Route path="payroll/company" element={<EmployeeCheckInOut/>} />
 
 
           </Routes>

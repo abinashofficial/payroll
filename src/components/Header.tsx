@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { IconButton, Box, Avatar } from "@mui/material";
 import { VscBellDot } from "react-icons/vsc";
 import Logo from "../assets/logo_prison.svg";
-import LogoSmall from "../assets/logo_prison.svg";
 import avatarPic from "../assets/avatar.png";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -27,13 +26,19 @@ const Header: React.FC<HeaderProps> = ({
   isOpenMenu,
   darkMode,
 }) => {
-  const { empdetail, setEmployeeRole} = useContext(locateContext);
+  const { empdetail, setEmployeeRole, company} = useContext(locateContext);
 
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
+    const [logo, setLogo] = useState(company.logo);
 
 
+  useEffect(() => {
+
+setLogo(company.logo);
+console.log(company.logo)
+  },[company.logo]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -87,8 +92,18 @@ const Header: React.FC<HeaderProps> = ({
       >
         <div style={{ width: "30px" }}>
           <Link to="/payroll">
+          {
+            logo? (
+     <img style={{
+            width:"50px",
+            height:"50px",
+          }} src={logo} alt="Company Logo" className="w-24 h-24 rounded-lg mb-2 border" />
+            ):(
             <img className="largeLogo" src={Logo} alt="Logo" width="50px">
             </img>
+            )
+          }
+
               {/* <div className="logoLine"></div> */}
           </Link>
         </div>
@@ -96,12 +111,17 @@ const Header: React.FC<HeaderProps> = ({
 
       <Box sx={{ display: isOpenMenu ? "none" : "block" }}>
         <Link to="/payroll">
-          <img
-            src={LogoSmall}
-            alt="Small Logo"
-            className="largeLogo"
-            width="50px"
-          />
+          {
+            logo? (
+     <img style={{
+            width:"50px",
+            height:"50px",
+          }} src={logo} alt="Company Logo" className="w-24 h-24 rounded-lg mb-2 border" />
+            ):(
+            <img className="largeLogo" src={Logo} alt="Logo" width="50px">
+            </img>
+            )
+          }
         </Link>
       </Box>
       <Box

@@ -93,6 +93,11 @@ const SideBar: React.FC<SideBarProps> = ({
   };
 
   const [userMenuItems] = useState<MenuItem[]>([
+        {
+      path: "/payroll",
+      name: "Dashboard",
+      icon: <DashboardOutlinedIcon />,
+    },
     {
       name: "Leave Request",
       // icon: <img className="menu_icons" src={Raise} alt="humanImage"/>,
@@ -152,6 +157,11 @@ const SideBar: React.FC<SideBarProps> = ({
   ]);
 
   const [manager] = useState<MenuItem[]>([
+        {
+      path: "/payroll",
+      name: "Dashboard",
+      icon: <DashboardOutlinedIcon />,
+    },
     {
       name: "Leave Request",
       // icon: <img className="menu_icons" src={Raise} alt="humanImage"/>,
@@ -252,7 +262,7 @@ const SideBar: React.FC<SideBarProps> = ({
   const [admin] = useState<MenuItem[]>([
     
     {
-      path: "/payroll/dashboard",
+      path: "/payroll",
       name: "Dashboard",
       icon: <DashboardOutlinedIcon />,
     },
@@ -293,6 +303,12 @@ const SideBar: React.FC<SideBarProps> = ({
       path: "payroll/employees",
       name: "Employees",
       icon:<FactCheckOutlinedIcon/>,
+    },
+
+        {
+      name: "Company",
+      icon: <PackagingList />,
+      path: "/payroll/company",
     },
 
   ]);

@@ -18,6 +18,9 @@ import { FcBusinessContact } from "react-icons/fc";
 // import { FcAssistant } from "react-icons/fc";
 import { MdLocationPin } from "react-icons/md";
 // import { FcAdvertising } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
+import {RaiseRequest} from "../raise-req/RaiseReq"
+
 
 
 
@@ -31,6 +34,14 @@ export function TodayRequest() {
 
   const [componentValue, setComponentValue] = useState<string>("Overall");
   console.log(componentValue)
+  const navigate = useNavigate()
+    const [open, setOpen] = useState(false);
+  
+  
+    const handleMenuItemClick = (openStatus: boolean) => {
+      console.log()
+      setOpen(openStatus)
+    };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -92,7 +103,7 @@ export function TodayRequest() {
                                                                 boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
                                       borderRadius:"10px",
                         }}
-                          //   onClick={() => setIsHovered(!isHovered)}
+                            onClick={() => navigate("/payroll/checkin")}
                         
                 
                         >
@@ -115,7 +126,7 @@ export function TodayRequest() {
                                                                             gap:"10px",
 
                         }}
-                          //   onClick={() => setIsHovered(!isHovered)}
+                             onClick={() => navigate("/payroll/calendar")}
                         
                 
                         >
@@ -148,7 +159,7 @@ export function TodayRequest() {
                         }}
                           //   onClick={() => setIsHovered(!isHovered)}
                         
-                
+                onClick={()=>handleMenuItemClick(true)}
                         >
                           < HiOutlineHandRaised size={50} />
                           <p>Leave Request</p>
@@ -573,6 +584,8 @@ marginTop:"8px",
       <img className="menu_icons" src={overallsvg} alt="coins" />
 
           </div> */}
+                <RaiseRequest open={open} onClose={()=>handleMenuItemClick(false)}/>
+          
     </Box>
   );
 }

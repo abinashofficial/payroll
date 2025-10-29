@@ -82,3 +82,22 @@ width: 240px !important;
     height: auto; /* optional: adjust height automatically */
   }
 }
+
+
+.css-113d811-MuiFormLabel-root-MuiInputLabel-root{
+  z-index: 0!important;
+}
+
+/* .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input{
+  z-index: 0!important;
+}
+
+.css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input{
+z-index: 0!important;
+} */
+
+.css-18jp67o-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+
+  z-index: 0!important;
+}
+

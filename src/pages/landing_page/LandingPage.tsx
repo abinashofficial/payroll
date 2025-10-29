@@ -79,7 +79,7 @@ export function LandingPage() {
                     height:"100px",
                     width:"120px",
                   }}
-                    //   onClick={() => setIsHovered(!isHovered)}
+                      onClick={() => navigate("/payroll/checkin")}
                   
           
                   >

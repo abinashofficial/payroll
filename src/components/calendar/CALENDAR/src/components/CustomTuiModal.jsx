@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
-import { Modal } from "reactstrap";
+import  { useState, useRef, useEffect } from "react";
+// import { Modal } from "reactstrap";
 
-import DateRangePicker from "./DateRangePicker";
+// import DateRangePicker from "./DateRangePicker";
 
 export default function CustomTuiModal({
   isOpen = false,
