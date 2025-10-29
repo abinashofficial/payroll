@@ -217,8 +217,8 @@ addAttendance()
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
-        width:"100%",
-        height:"60vh",
+        // width:"100%",
+        // height:"60vh",
     }}
     >
 

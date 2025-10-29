@@ -19,6 +19,7 @@ import "./pages/track_req/CommonTrackReq.css"
 import CheckInOut from './pages/checkIn.tsx'
 import EmployeeCheckInOut from './pages/companyDetails.tsx'
 import {ManagerTrackRequest} from './pages/track_req/managerTrackReq.tsx';
+import "./pages/raise-req/CommonDrawer.css"
 
 
 

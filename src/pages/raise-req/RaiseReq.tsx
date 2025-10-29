@@ -14,7 +14,6 @@ import { locateContext } from '../../App';
 // import { useNavigate } from 'react-router-dom';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './CommonDrawer.css';
 import type { SelectChangeEvent } from "@mui/material/Select";
 import CloseIcon from '@mui/icons-material/Close';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
