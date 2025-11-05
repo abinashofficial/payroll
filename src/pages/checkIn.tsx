@@ -206,7 +206,11 @@ addAttendance()
     if (branch === "Bangalore" || branch === "Chennai") {
       loc = BRANCH_LOCATIONS[branch];
     } else if (branch === "Current Location") {
+          setVisible(!visible)
+
       handleSetCurrentLocation();
+              setVisible(!visible)
+
     }
     setCompany((prev:any) => ({ ...prev, branch, location: loc }));
     console.log(error)
