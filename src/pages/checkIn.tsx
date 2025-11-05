@@ -107,7 +107,7 @@ const CheckInOut: React.FC = () => {
                     setStatus(`Total Working Hours - ${calculateHours(checkInTime, now)}`);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setVisible(true)
-      return
+      return;
                     }
 
           // Example: send to backend
@@ -124,15 +124,19 @@ const CheckInOut: React.FC = () => {
               return;
         }
       },
-      (err) => setError(err.message),
+      (err) => setError("❌ "+ err.message),
       { enableHighAccuracy: true }
     );
+                  setVisible(true)
+
+    return;
+
   };
 
 
   const handleNext = (index :any) => {
      setError("")
-    setVisible(!visible)
+    setVisible(false)
     console.log(index);
     handleCheckInOut(index)
     // setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -183,7 +187,7 @@ addAttendance()
   // Get current user location and set as company location
   const handleSetCurrentLocation = () => {
     if (!navigator.geolocation) {
-    //   setError("Geolocation not supported");
+      setError("Geolocation not supported");
       return;
     }
     navigator.geolocation.getCurrentPosition(
@@ -192,7 +196,7 @@ addAttendance()
           latitude: pos.coords.latitude,
           longitude: pos.coords.longitude,
         };
-        setCompany((prev:any) => ({ ...prev, location: loc }));
+        setCompany((prev:any) => ({ ...prev,branch:"Current Location", location: loc }));
         // setError(null);
         // setStatus("📍 Current location set for company!");
       },
@@ -200,20 +204,28 @@ addAttendance()
       { enableHighAccuracy: true }
     );
   };
+
+
     // Handle branch selection
   const handleBranchChange = (branch: string) => {
+    setError("");
+    setStatus("");
+    setDistance(null);
     let loc = null;
     if (branch === "Bangalore" || branch === "Chennai") {
       loc = BRANCH_LOCATIONS[branch];
     } else if (branch === "Current Location") {
-          setVisible(!visible)
+          setVisible(false)
 
+console.log("Current Location selected");
       handleSetCurrentLocation();
-              setVisible(!visible)
-
+      console.log("After setting current location");
+              setVisible(true)
+      return;
     }
     setCompany((prev:any) => ({ ...prev, branch, location: loc }));
     console.log(error)
+    return;
   };
   return (
 
